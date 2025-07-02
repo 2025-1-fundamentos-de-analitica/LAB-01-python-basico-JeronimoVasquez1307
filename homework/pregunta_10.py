@@ -4,7 +4,7 @@ datos requeridos se encuentran en el archivo data.csv. En este laboratorio
 solo puede utilizar las funciones y librerias basicas de python. No puede
 utilizar pandas, numpy o scipy.
 """
-
+import os
 
 def pregunta_10():
     """
@@ -20,3 +20,24 @@ def pregunta_10():
 
 
     """
+
+    ruta = "files/input/data.csv"
+    tuplas = []
+    if os.path.exists(ruta):
+
+        with open(ruta, 'r', encoding= 'utf-8') as archivo:
+
+            for linea in archivo:
+                line = linea.strip().split()
+
+                letra = line[0]
+                col4 = len(line[3].split(','))
+                col5 = len(line[4].split(','))
+
+                tupla = (letra, col4, col5)
+                tuplas.append(tupla)
+
+            return tuplas
+        
+
+print(pregunta_10())

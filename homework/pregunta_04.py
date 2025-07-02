@@ -4,7 +4,7 @@ datos requeridos se encuentran en el archivo data.csv. En este laboratorio
 solo puede utilizar las funciones y librerias basicas de python. No puede
 utilizar pandas, numpy o scipy.
 """
-
+import os
 
 def pregunta_04():
     """
@@ -25,4 +25,31 @@ def pregunta_04():
      ('11', 2),
      ('12', 3)]
 
-    """
+    """ 
+
+    ruta = "files/input/data.csv"
+    meses = {}
+    if os.path.exists(ruta):
+
+        with open(ruta, 'r', encoding='utf-8') as archivo:
+
+            for linea in archivo:
+                line = linea.strip().split()
+
+                fecha  = line[2].split('-')
+                mes = fecha[1]
+                if mes in meses:
+                    meses[mes] += 1
+                else:
+                    meses[mes] = 1
+
+            resultado = sorted([(mes, cantidad) for mes, cantidad in meses.items()])
+            return resultado
+    
+    else:
+        print("La ruta no existe")
+
+    
+
+print(pregunta_04())
+   
